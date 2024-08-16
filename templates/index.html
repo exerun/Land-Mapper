@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Area Calculator</title>
+</head>
+
+<body>
+    <h1>Land Area Calculator</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="sensor_width">Sensor Width (meters):</label>
+        <input type="text" id="sensor_width" name="sensor_width" required><br><br>
+
+        <label for="altitude">Altitude (meters):</label>
+        <input type="text" id="altitude" name="altitude" required><br><br>
+
+        <label for="focal_length">Focal Length (meters):</label>
+        <input type="text" id="focal_length" name="focal_length" required><br><br>
+
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if gsd %}
+    <h2>Calculation Result</h2>
+    <p>GSD: {{ gsd }} meters/pixel</p>
+    <p>Area: {{ area }} square meters</p>
+    <p>Area: {{ area_acres }} acres</p>
+    <img src="{{ url_for('uploaded_file', filename=image_file) }}" alt="Cropped Area"> {% endif %} {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+
+</html>
